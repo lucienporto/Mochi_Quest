@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bow7t7qswri3y"
-path="res://.godot/imported/Blocks (16 x 16).png-fd0ffaa116c9588e1f0082e2a6ea6f00.ctex"
+uid="uid://b24w6tq2wbepq"
+path="res://.godot/imported/checkpoint.png-f69bad5eca57064348f8012e81adb19d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Blocks (16 x 16).png"
-dest_files=["res://.godot/imported/Blocks (16 x 16).png-fd0ffaa116c9588e1f0082e2a6ea6f00.ctex"]
+source_file="res://addons/new_assets/checkpoint.png"
+dest_files=["res://.godot/imported/checkpoint.png-f69bad5eca57064348f8012e81adb19d.ctex"]
 
 [params]
 
