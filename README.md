@@ -6,7 +6,7 @@ Viaje por 4 cenários diferentes e enfrente criaturas para salvar seu amigo Onio
 
 Neste jogo de plataforma 2d, você encontrará desafios pelo mapa para poder avançar no jogo, encontrando diferentes tipos de criaturas, cada uma com suas particularidades, enquanto coleta moedas que podem ser usadas para comprar corações ou vidas.
 
-Para jogar, acesse o link a seguir: LINK EM BREVE
+Para jogar, acesse o link a seguir: [Mochi Quest](https://lucporto.itch.io/mochi-quest).
 
 <h2> Controles do Jogo </h2>
 
@@ -46,5 +46,9 @@ Ao interagir com uma máquina de vendas, se abrirá uma nova janela onde você p
 <h2> Créditos </h2>
 
 Todos os créditos dos assets usados tanto de imagem quanto de som pertencem aos seus respectivos criadores.
+
+<h2>Feedbacks e Suporte</h2>
+
+Encontrou algum bug ou tem algo a me dizer sobre o jogo? Sinta-se livre para deixar um comentário ou me mandar uma mensagem.
 
 <img align="center" alt="Tela inicial do jogo Mochi Quest" width="2000"  src="img/mochicon.png">
