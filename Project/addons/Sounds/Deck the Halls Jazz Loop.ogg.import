@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://y754rwegr3vi"
+path="res://.godot/imported/Deck the Halls Jazz Loop.ogg-32eb44bc2fe6428be98e66eeb5df2ff9.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/Sounds/Deck the Halls Jazz Loop.ogg"
+dest_files=["res://.godot/imported/Deck the Halls Jazz Loop.ogg-32eb44bc2fe6428be98e66eeb5df2ff9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

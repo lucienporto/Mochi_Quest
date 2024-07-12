@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7utm0o4xe7bn"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_qxkah"]
+[ext_resource type="Theme" uid="uid://bg3a35cdj28a1" path="res://ui_components/button_pause_theme.tres" id="2_gfgyd"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_eoqqy"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_5j7lj"]
+events = [SubResource("InputEventAction_eoqqy")]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_qxkah")
+
+[node name="BgOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.52549)
+
+[node name="MenuHolder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Resume" type="Button" parent="MenuHolder"]
+layout_mode = 2
+theme = ExtResource("2_gfgyd")
+theme_override_font_sizes/font_size = 24
+shortcut = SubResource("Shortcut_5j7lj")
+text = "RESUME"
+
+[node name="Quit" type="Button" parent="MenuHolder"]
+layout_mode = 2
+theme = ExtResource("2_gfgyd")
+theme_override_font_sizes/font_size = 24
+text = "QUIT"
+
+[connection signal="pressed" from="MenuHolder/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MenuHolder/Quit" to="." method="_on_quit_pressed"]

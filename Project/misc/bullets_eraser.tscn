@@ -1,0 +1,221 @@
+[gd_scene load_steps=31 format=3 uid="uid://bmrxalej47b8b"]
+
+[ext_resource type="Script" path="res://scripts/bullets_eraser.gd" id="1_wjqgi"]
+[ext_resource type="Texture2D" uid="uid://bb8nm1rbifr65" path="res://addons/Mini FX, Items & UI/Effects/Explosion_Poof (16 x 16).png" id="2_rj0ap"]
+[ext_resource type="Texture2D" uid="uid://chaakvmfmny2o" path="res://addons/Mini FX, Items & UI/Effects/Bright_Sparkle (16 x 16).png" id="3_g227b"]
+[ext_resource type="Texture2D" uid="uid://bjja4vpuifude" path="res://addons/Mini FX, Items & UI/Effects/Cloud_Poof (16 x 16).png" id="3_mtbo7"]
+[ext_resource type="Texture2D" uid="uid://ufq816a2fgrd" path="res://addons/Sprite Pack 2/13 - Angie/Seed_Explosion (8 x 8).png" id="4_lck8b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxk2a"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyfts"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1px8"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o42et"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8oks"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cc6v"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po643"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wm2a"]
+atlas = ExtResource("2_rj0ap")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7cgv"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qfyo"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld40h"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42ej4"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v80l"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us4pl"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2glq"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l02ip"]
+atlas = ExtResource("3_mtbo7")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aij47"]
+atlas = ExtResource("4_lck8b")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfm6v"]
+atlas = ExtResource("4_lck8b")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngcnr"]
+atlas = ExtResource("4_lck8b")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3sfo"]
+atlas = ExtResource("4_lck8b")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk4ty"]
+atlas = ExtResource("3_g227b")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sq1d"]
+atlas = ExtResource("3_g227b")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vnto"]
+atlas = ExtResource("3_g227b")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpme3"]
+atlas = ExtResource("3_g227b")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8yrgx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxk2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyfts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1px8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o42et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8oks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cc6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po643")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wm2a")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7cgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qfyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld40h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42ej4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v80l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us4pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2glq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l02ip")
+}],
+"loop": false,
+"name": &"poof",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aij47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfm6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngcnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3sfo")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"seed_explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk4ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sq1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vnto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpme3")
+}],
+"loop": false,
+"name": &"sparkle_end",
+"speed": 5.0
+}]
+
+[node name="BulletsEraser" type="Area2D"]
+collision_layer = 512
+collision_mask = 132
+script = ExtResource("1_wjqgi")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8yrgx")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

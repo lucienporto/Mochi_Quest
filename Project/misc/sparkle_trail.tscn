@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://cuvgbqmjd6oex"]
+
+[ext_resource type="Texture2D" uid="uid://d3glm07tqcuef" path="res://addons/Sprite Pack 2/2 - Fairy/Magic_Sparkle_Trail (32 x 32).png" id="1_4ht73"]
+[ext_resource type="Script" path="res://scripts/sparkle_trail.gd" id="1_lvs12"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6ae8"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b5fc"]
+atlas = ExtResource("1_4ht73")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csufl"]
+atlas = ExtResource("1_4ht73")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgkmk"]
+atlas = ExtResource("1_4ht73")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqi4d"]
+atlas = ExtResource("1_4ht73")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scyy4"]
+atlas = ExtResource("1_4ht73")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_521ks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b5fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csufl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgkmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqi4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scyy4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SparkleTrail" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("1_lvs12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p6ae8")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_521ks")
+frame_progress = 0.558062

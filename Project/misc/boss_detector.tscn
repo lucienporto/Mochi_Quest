@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2k34t3l5l8kh"]
+
+[ext_resource type="Script" path="res://scripts/boss_detector.gd" id="1_sfqld"]
+[ext_resource type="Texture2D" uid="uid://b5u7kgty7b224" path="res://addons/new_assets/Gate.png" id="2_63sg7"]
+[ext_resource type="AudioStream" uid="uid://570f1fjlff0d" path="res://addons/Sounds/boss-fight.wav" id="3_2y80k"]
+
+[sub_resource type="Animation" id="Animation_3sjo3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gate:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7ejr6"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gate:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 80)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbi8s"]
+_data = {
+"RESET": SubResource("Animation_3sjo3"),
+"open": SubResource("Animation_7ejr6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdx15"]
+size = Vector2(16, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr0j2"]
+size = Vector2(20, 86)
+
+[node name="BossDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_sfqld")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rbi8s")
+}
+
+[node name="Gate" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Gate"]
+texture = ExtResource("2_63sg7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_bdx15")
+
+[node name="Holder" type="CharacterBody2D" parent="."]
+position = Vector2(-127, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Holder"]
+shape = SubResource("RectangleShape2D_fr0j2")
+debug_color = Color(0.329412, 0.505882, 0.945098, 0.419608)
+
+[node name="BossFight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2y80k")
+volume_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

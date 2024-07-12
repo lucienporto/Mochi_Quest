@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpoxyx2uipi2g"]
+
+[ext_resource type="FontFile" uid="uid://citoneumfg7jc" path="res://addons/new_assets/RevMiniPixel.ttf" id="1_3wo0b"]
+[ext_resource type="Script" path="res://scripts/ending.gd" id="1_n5qql"]
+[ext_resource type="Texture2D" uid="uid://dtm230gl8ltp5" path="res://addons/new_assets/game_logo.png" id="2_hxra0"]
+[ext_resource type="Theme" uid="uid://cx7bxyl5pkauh" path="res://ui_components/menu_theme.tres" id="3_lstvf"]
+[ext_resource type="AudioStream" uid="uid://byq0et24m5ov0" path="res://addons/Sounds/Friday Afternoon Loop.wav" id="5_457oe"]
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n5qql")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -103.0
+offset_right = 151.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_3wo0b")
+theme_override_font_sizes/font_size = 24
+text = "THANK YOU FOR PLAYING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_hxra0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="Title" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_lstvf")
+text = "  RETURN TO TITLE  "
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_lstvf")
+text = "  QUIT GAME  "
+
+[node name="BgSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_457oe")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Title" to="." method="_on_title_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://du8bl1tnb3jsp"]
+
+[ext_resource type="Script" path="res://scripts/fall_area.gd" id="1_6b50c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q500h"]
+
+[node name="FallArea" type="Area2D"]
+collision_layer = 256
+script = ExtResource("1_6b50c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q500h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

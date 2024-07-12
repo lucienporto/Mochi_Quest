@@ -1,0 +1,236 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs35dj5o17bdl"]
+
+[ext_resource type="Script" path="res://scripts/queijao.gd" id="1_r06uq"]
+[ext_resource type="Texture2D" uid="uid://c32i2wa7m05th" path="res://addons/Sprite Pack 2/8 - Comrade Cheese Puff/Tank_Movement (32 x 32).png" id="1_rxkws"]
+[ext_resource type="Texture2D" uid="uid://bjja4vpuifude" path="res://addons/Mini FX, Items & UI/Effects/Cloud_Poof (16 x 16).png" id="3_j3lgm"]
+[ext_resource type="PackedScene" uid="uid://n4wcpx7avysp" path="res://misc/hitbox.tscn" id="3_tt18d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wmy1"]
+size = Vector2(25.3333, 15.6667)
+
+[sub_resource type="Animation" id="Animation_xr5w0"]
+resource_name = "moving"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rxkws")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cloud:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cloud:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16.6667, -20.6667), Vector2(21.3333, -24), Vector2(25.3333, -26.6667), Vector2(30, -30.6667), Vector2(34.6667, -34), Vector2(38, -36.6667), Vector2(38, -37.3333), Vector2(40, -38.6667)]
+}
+
+[sub_resource type="Animation" id="Animation_egy7c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rxkws")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cloud:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cloud:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21.3333, -24)]
+}
+
+[sub_resource type="Animation" id="Animation_w4t72"]
+resource_name = "shooting"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rxkws")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kt628"]
+_data = {
+"RESET": SubResource("Animation_egy7c"),
+"moving": SubResource("Animation_xr5w0"),
+"shooting": SubResource("Animation_w4t72")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i34xg"]
+size = Vector2(14.3333, 5)
+
+[node name="Queijao" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 132
+collision_mask = 3
+script = ExtResource("1_r06uq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_rxkws")
+hframes = 2
+
+[node name="Cloud" type="Sprite2D" parent="."]
+position = Vector2(21.3333, -24)
+texture = ExtResource("3_j3lgm")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.666667, -9.16667)
+shape = SubResource("RectangleShape2D_4wmy1")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kt628")
+}
+autoplay = "moving"
+
+[node name="Hitbox" parent="." instance=ExtResource("3_tt18d")]
+position = Vector2(-1.33333, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_i34xg")
+debug_color = Color(0.811765, 0.168627, 0.901961, 0.419608)
+
+[node name="MissileSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-10, -8)
+
+[node name="PlayerDetector" type="RayCast2D" parent="."]
+position = Vector2(0, -7.33333)
+target_position = Vector2(-60, 0)
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+position = Vector2(0, -2)
+target_position = Vector2(-20, 0)
+collision_mask = 2
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,0 +1,169 @@
+[gd_scene load_steps=18 format=3 uid="uid://dm0fbydw4weyw"]
+
+[ext_resource type="Texture2D" uid="uid://dfy2i3itr2oko" path="res://addons/Sprite Pack 2/15 - Blankey/10 - Blankey_Floating (32 x 32).png" id="1_kjjgp"]
+[ext_resource type="Script" path="res://scripts/phantom.gd" id="1_tkki0"]
+[ext_resource type="Texture2D" uid="uid://bb7k38l60phxb" path="res://addons/Sprite Pack 2/15 - Blankey/10 - Blankey_Hurt (32 x 32).png" id="2_2yytg"]
+[ext_resource type="PackedScene" uid="uid://n4wcpx7avysp" path="res://misc/hitbox.tscn" id="3_yknqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieoak"]
+atlas = ExtResource("1_kjjgp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ct8q"]
+atlas = ExtResource("1_kjjgp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sc7p"]
+atlas = ExtResource("1_kjjgp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_groj1"]
+atlas = ExtResource("1_kjjgp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuct8"]
+atlas = ExtResource("2_2yytg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xchuu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieoak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ct8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sc7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_groj1")
+}],
+"loop": true,
+"name": &"floating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuct8")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww2vk"]
+size = Vector2(18, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bi3dc"]
+size = Vector2(14, 4)
+
+[sub_resource type="Curve2D" id="Curve2D_ua4i4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 26, -1, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 55, -1, 0, 0, 0, 0, 71, 0, 0, 0, 0, 0, 83, -1, 0, 0, 0, 0, 93, 0, 0, 0, 0, 0, 103, 0)
+}
+point_count = 8
+
+[sub_resource type="Animation" id="Animation_nfo4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0fppd"]
+resource_name = "patrol"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cbvpt"]
+_data = {
+"RESET": SubResource("Animation_nfo4g"),
+"patrol": SubResource("Animation_0fppd")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fofke"]
+size = Vector2(20, 26)
+
+[node name="Ghost" type="Node2D"]
+
+[node name="Phantom" type="CharacterBody2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_tkki0")
+
+[node name="Anim" type="AnimatedSprite2D" parent="Phantom"]
+sprite_frames = SubResource("SpriteFrames_xchuu")
+animation = &"floating"
+autoplay = "floating"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phantom"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ww2vk")
+
+[node name="Hitbox" parent="Phantom" instance=ExtResource("3_yknqh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phantom/Hitbox"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_bi3dc")
+debug_color = Color(0.807843, 0.203922, 0.882353, 0.419608)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ua4i4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+visible = false
+position = Vector2(1, 0)
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../Phantom")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cbvpt")
+}
+autoplay = "patrol"
+speed_scale = 0.5
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(121, 0)
+collision_layer = 1024
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_fofke")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(-17, 0)
+collision_layer = 1024
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_fofke")
+
+[connection signal="body_entered" from="Phantom/Hitbox" to="Phantom" method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Phantom" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Phantom" method="_on_area_2d_2_body_entered"]

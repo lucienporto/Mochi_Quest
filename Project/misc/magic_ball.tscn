@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://lsomrpshv1fm"]
+
+[ext_resource type="Texture2D" uid="uid://co8r4q8st4e5a" path="res://addons/Sprite Pack 2/2 - Fairy/Magic_Charged_Pellet (32 x 32).png" id="1_lgvfs"]
+[ext_resource type="Script" path="res://scripts/magic_ball.gd" id="1_lxyit"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4kqrg"]
+radius = 4.99999
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tghrx"]
+atlas = ExtResource("1_lgvfs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkoqf"]
+atlas = ExtResource("1_lgvfs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwaxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tghrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkoqf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MagicBall" type="CharacterBody2D" groups=["magic"]]
+collision_layer = 132
+collision_mask = 512
+script = ExtResource("1_lxyit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.56841
+shape = SubResource("CapsuleShape2D_4kqrg")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_xwaxh")
+autoplay = "default"
+frame_progress = 0.761243

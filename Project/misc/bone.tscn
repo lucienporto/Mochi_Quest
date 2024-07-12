@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsduag4yyghy7"]
+
+[ext_resource type="Script" path="res://scripts/bone.gd" id="1_654e6"]
+[ext_resource type="Texture2D" uid="uid://b01dme54xu4ak" path="res://addons/Sprite Pack 2/11 - Skeleton/Spinning_Bone (16 x 16).png" id="1_xqcvo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex8dj"]
+atlas = ExtResource("1_xqcvo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aghuf"]
+atlas = ExtResource("1_xqcvo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbohy"]
+atlas = ExtResource("1_xqcvo")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhq30"]
+atlas = ExtResource("1_xqcvo")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebutp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex8dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aghuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbohy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhq30")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4j0m6"]
+radius = 7.0
+
+[node name="Bone" type="CharacterBody2D" groups=["bone"]]
+collision_layer = 132
+collision_mask = 0
+script = ExtResource("1_654e6")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ebutp")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4j0m6")

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2ws0kntpfqsk"]
+
+[ext_resource type="Script" path="res://scripts/seed.gd" id="1_xjx28"]
+[ext_resource type="Texture2D" uid="uid://7opgynipy28a" path="res://addons/Sprite Pack 2/13 - Angie/Seed_Launch (8 x 8).png" id="3_5siwq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_idh0p"]
+radius = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g0ih"]
+atlas = ExtResource("3_5siwq")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opbg2"]
+atlas = ExtResource("3_5siwq")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2uvu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g0ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opbg2")
+}],
+"loop": true,
+"name": &"launch",
+"speed": 7.0
+}]
+
+[node name="Seed" type="CharacterBody2D" groups=["seed"]]
+collision_layer = 132
+collision_mask = 512
+script = ExtResource("1_xjx28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_idh0p")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d2uvu")
+animation = &"launch"
+autoplay = "launch"

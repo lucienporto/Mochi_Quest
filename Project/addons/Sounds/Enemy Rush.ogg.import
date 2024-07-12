@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dprd2n8lruwtb"
+path="res://.godot/imported/Enemy Rush.ogg-aa731cbf52c8fb5a6c717ed5d3ab68dd.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/Sounds/Enemy Rush.ogg"
+dest_files=["res://.godot/imported/Enemy Rush.ogg-aa731cbf52c8fb5a6c717ed5d3ab68dd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

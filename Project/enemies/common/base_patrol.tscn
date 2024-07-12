@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://7jphn0bx87vj"]
+
+[ext_resource type="Texture2D" uid="uid://bie18hf025met" path="res://addons/Sprite Pack 2/7 - Rocket Cherry/Flying (16 x 32).png" id="1_ail60"]
+[ext_resource type="Script" path="res://scripts/rocket_cherry.gd" id="1_cwcji"]
+[ext_resource type="Texture2D" uid="uid://bvkgytjef2r6d" path="res://addons/Sprite Pack 2/7 - Rocket Cherry/Hurt_Falling (16 x 32).png" id="2_leanc"]
+[ext_resource type="PackedScene" uid="uid://n4wcpx7avysp" path="res://misc/hitbox.tscn" id="3_7e4ai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plno6"]
+atlas = ExtResource("1_ail60")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueaeb"]
+atlas = ExtResource("1_ail60")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8cvb"]
+atlas = ExtResource("2_leanc")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ydlb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plno6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueaeb")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8cvb")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esfqc"]
+size = Vector2(12, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yloh"]
+size = Vector2(13, 3)
+
+[sub_resource type="Curve2D" id="Curve2D_76v01"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -63, 0, 0, 0, 0, 0, -65, 0, 0, 0, 0, 0, -86)
+}
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_381c5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s76my"]
+resource_name = "patrol"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yt825"]
+_data = {
+"RESET": SubResource("Animation_381c5"),
+"patrol": SubResource("Animation_s76my")
+}
+
+[node name="BasePatrol" type="Node2D"]
+
+[node name="RocketCherry" type="CharacterBody2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_cwcji")
+score_points = 200
+
+[node name="anim" type="AnimatedSprite2D" parent="RocketCherry"]
+sprite_frames = SubResource("SpriteFrames_ydlb3")
+animation = &"hurt"
+autoplay = "flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocketCherry"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_esfqc")
+
+[node name="Hitbox" parent="RocketCherry" instance=ExtResource("3_7e4ai")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocketCherry/Hitbox"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_1yloh")
+debug_color = Color(0.843137, 0.278431, 0.658824, 0.419608)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_76v01")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, 1)
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../RocketCherry")
+
+[node name="SpawnEnemy" type="Marker2D" parent="." groups=["enemies"]]
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yt825")
+}
+autoplay = "patrol"
+speed_scale = 0.3
+
+[connection signal="body_entered" from="RocketCherry/Hitbox" to="RocketCherry" method="_on_hitbox_body_entered"]

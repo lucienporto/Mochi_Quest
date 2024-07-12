@@ -1,0 +1,186 @@
+[gd_scene load_steps=22 format=3 uid="uid://d4f7twoifi4ga"]
+
+[ext_resource type="Texture2D" uid="uid://drbkxea5ghwf3" path="res://addons/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="1_61dji"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_fxynh"]
+[ext_resource type="Texture2D" uid="uid://crvd2lgnut3ee" path="res://addons/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="2_f23ng"]
+[ext_resource type="Texture2D" uid="uid://c6ed4ij4251f7" path="res://addons/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_irv06"]
+[ext_resource type="Texture2D" uid="uid://bbfgkwegnucik" path="res://addons/Sprite Pack 2/2 - Mr. Mochi/Running (32 x 32).png" id="4_n2gnd"]
+[ext_resource type="AudioStream" uid="uid://b75mplryxdoks" path="res://addons/Sounds/jump.wav" id="6_qxghi"]
+[ext_resource type="AudioStream" uid="uid://cyb7wfdpmif0m" path="res://addons/Sounds/take_damage.wav" id="7_vjrqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k61h5"]
+size = Vector2(13, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wek5x"]
+atlas = ExtResource("2_f23ng")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjg7b"]
+atlas = ExtResource("1_61dji")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi56p"]
+atlas = ExtResource("1_61dji")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45bca"]
+atlas = ExtResource("3_irv06")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nen00"]
+atlas = ExtResource("4_n2gnd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j06yy"]
+atlas = ExtResource("4_n2gnd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nytrp"]
+atlas = ExtResource("4_n2gnd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53out"]
+atlas = ExtResource("4_n2gnd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i5j6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wek5x")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjg7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi56p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45bca")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nen00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j06yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nytrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53out")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8spx4"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp5as"]
+size = Vector2(12, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcu86"]
+size = Vector2(18, 17.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_im23v"]
+size = Vector2(16, 5)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 214
+script = ExtResource("1_fxynh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -7.5)
+shape = SubResource("RectangleShape2D_k61h5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_i5j6k")
+animation = &"hit"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 260
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_8spx4")
+debug_color = Color(0.968627, 0.0156863, 0.454902, 0.419608)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+
+[node name="HeadCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCollider"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_pp5as")
+
+[node name="SpikeCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="spike_coll" type="CollisionShape2D" parent="SpikeCollider"]
+position = Vector2(0, -8.25)
+shape = SubResource("RectangleShape2D_gcu86")
+debug_color = Color(0.654902, 0.337255, 0.980392, 0.419608)
+
+[node name="RayDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 4)
+collision_mask = 128
+hit_from_inside = true
+
+[node name="RayDown2" type="RayCast2D" parent="."]
+position = Vector2(-4, 0)
+target_position = Vector2(0, 4)
+collision_mask = 128
+hit_from_inside = true
+
+[node name="RayDown3" type="RayCast2D" parent="."]
+position = Vector2(4, 0)
+target_position = Vector2(0, 4)
+collision_mask = 128
+hit_from_inside = true
+
+[node name="FallCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallCollider"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_im23v")
+debug_color = Color(0, 0.00392157, 0.00784314, 0.419608)
+
+[node name="JumpFx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_qxghi")
+volume_db = -25.0
+
+[node name="TakingDamage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vjrqg")
+volume_db = -15.0
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="HeadCollider" to="." method="_on_head_collider_body_entered"]
+[connection signal="body_entered" from="SpikeCollider" to="." method="_on_spike_collider_body_entered"]
+[connection signal="body_entered" from="FallCollider" to="." method="_on_fall_collider_body_entered"]

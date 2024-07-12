@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce2tuv81xhg7d"]
+
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_2l73o"]
+[ext_resource type="Texture2D" uid="uid://bjjvf4bqlxnks" path="res://addons/Sprite Pack 2/8 - Comrade Cheese Puff/Missile (16 x 8).png" id="1_skmfm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4rxws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_skmfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxvn3"]
+size = Vector2(24, 20)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["missile"]]
+collision_layer = 132
+collision_mask = 512
+script = ExtResource("1_2l73o")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4rxws")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rxvn3")

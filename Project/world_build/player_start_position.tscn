@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://dsy4ytlke76rj"]
+
+[node name="PlayerStartPosition" type="Marker2D"]
+position = Vector2(24, 274)

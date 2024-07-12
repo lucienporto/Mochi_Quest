@@ -1,0 +1,282 @@
+[gd_scene load_steps=17 format=3 uid="uid://dumv7ih13roiv"]
+
+[ext_resource type="Texture2D" uid="uid://miqcdh77pnpo" path="res://addons/Sprite Pack 2/10 - Armand/Walking (32 x 32).png" id="1_6tw0w"]
+[ext_resource type="Script" path="res://scripts/roboto.gd" id="1_xk5a5"]
+[ext_resource type="Texture2D" uid="uid://c2rw4ihvdx1t8" path="res://addons/Sprite Pack 2/10 - Armand/Hurt_And_Recovery (32 x 32).png" id="2_uh33b"]
+[ext_resource type="Texture2D" uid="uid://fvt7lqnlm4dv" path="res://addons/Sprite Pack 2/10 - Armand/Spinning_Punch (32 x 32).png" id="3_n25er"]
+[ext_resource type="Texture2D" uid="uid://b7rp5uv3m4sq7" path="res://addons/Sprite Pack 2/10 - Armand/Falling (32 x 32).png" id="4_fymc5"]
+[ext_resource type="PackedScene" uid="uid://n4wcpx7avysp" path="res://misc/hitbox.tscn" id="5_kbyjv"]
+[ext_resource type="AudioStream" uid="uid://bsyg4d1aucpr2" path="res://addons/Sounds/sistembug.wav" id="6_ik3ji"]
+[ext_resource type="AudioStream" uid="uid://c8s877syv3p2x" path="res://addons/Sounds/spin.wav" id="8_wigpt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5uub"]
+size = Vector2(37, 33)
+
+[sub_resource type="Animation" id="Animation_arpnb"]
+resource_name = "walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_6tw0w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_tp2gg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_6tw0w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h03vn"]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_uh33b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m2vjx"]
+resource_name = "punch"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_n25er")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 5]
+}
+
+[sub_resource type="Animation" id="Animation_x4hxa"]
+resource_name = "shortcut"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_fymc5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tfr2"]
+_data = {
+"RESET": SubResource("Animation_tp2gg"),
+"hurt": SubResource("Animation_h03vn"),
+"punch": SubResource("Animation_m2vjx"),
+"shortcut": SubResource("Animation_x4hxa"),
+"walking": SubResource("Animation_arpnb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bs72"]
+size = Vector2(23, 8)
+
+[node name="Roboto" type="CharacterBody2D" groups=["boss", "rush"]]
+position = Vector2(0, -24)
+collision_layer = 132
+collision_mask = 3
+script = ExtResource("1_xk5a5")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_6tw0w")
+hframes = 6
+
+[node name="HurtSprite" type="Sprite2D" parent="Sprite"]
+visible = false
+self_modulate = Color(1, 0.141176, 0.141176, 1)
+texture = ExtResource("2_uh33b")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 7.5)
+shape = SubResource("RectangleShape2D_m5uub")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2tfr2")
+}
+autoplay = "walking"
+
+[node name="PlayerDetector" type="RayCast2D" parent="."]
+position = Vector2(0, 11)
+target_position = Vector2(50, 0)
+hit_from_inside = true
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+position = Vector2(0, 18)
+target_position = Vector2(45, 0)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="Hitbox" parent="." instance=ExtResource("5_kbyjv")]
+position = Vector2(0, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_8bs72")
+debug_color = Color(0.823529, 0.160784, 0.890196, 0.419608)
+
+[node name="Shortcut" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ik3ji")
+volume_db = -10.0
+
+[node name="Spin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wigpt")
+volume_db = -10.0
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

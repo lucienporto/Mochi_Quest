@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bpq6sb0f21f6j"
+path="res://.godot/imported/8Bit Platformer Loop.ogg-1ecdcb02ced3b986e0ecaf75e6f52a41.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/Sounds/8Bit Platformer Loop.ogg"
+dest_files=["res://.godot/imported/8Bit Platformer Loop.ogg-1ecdcb02ced3b986e0ecaf75e6f52a41.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
